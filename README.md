@@ -183,3 +183,6 @@ docker run -v $(pwd)/northwind_meltano/output:/meltano/northwind_meltano/output 
 
 ```chmod -R 777 northwind_meltano```
 ```ls -lah northwind_meltano```
+
+### Leia a documentação  
+https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
