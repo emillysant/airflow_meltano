@@ -163,9 +163,9 @@ docker run -v $(pwd)/northwind_meltano/output:/meltano/northwind_meltano/output 
 
 ### Rode o docker ps para verificar se ta health
 
-### Acessar o localhost://8080
+### Acessar o localhost://8080. Coloque seu usuário e senha
 
-### trigger na dag e observe os logs
+### trigger na dag e observe os logs. Não subi essa pasta, vc pode criar ela novamente
 
 
 
