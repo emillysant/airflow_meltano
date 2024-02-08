@@ -1,0 +1,31 @@
+FROM python:3.10.12
+
+# Configurar o ambiente
+ENV MELTANO_HOME /meltano
+WORKDIR $MELTANO_HOME
+
+# Criar e ativar o ambiente virtual
+RUN python -m venv venv && \
+    . venv/bin/activate && \
+    pip install meltano 
+    # ls -la && \
+    # cd northwind_meltano && \
+    # ls -la 
+
+# Copiar o diretório northwind_meltano para dentro do contêiner
+COPY northwind_meltano $MELTANO_HOME/northwind_meltano
+
+# Executar o comando meltano install dentro do diretório do projeto
+RUN . venv/bin/activate && cd northwind_meltano && meltano install
+
+# Executar o comando meltano run tap-postgres target-jsonl
+CMD . venv/bin/activate && cd northwind_meltano && meltano run tap-postgres target-jsonl
+
+
+# ---------------Buildar a imagem meltano
+## docker build -f Dockerfile.meltano -t meltano .
+
+
+# --------------- Executar a imagem 
+## docker run --network=host meltano
+## docker run -v $(pwd)/northwind_meltano/output:/meltano/northwind_meltano/output --network=host meltano

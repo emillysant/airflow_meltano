@@ -1,0 +1,8 @@
+dbdata
+db_warehouse
+venv
+/northwind_meltano/venv
+__pycache__
+data/dbdata
+data/db_warehouse
+logs

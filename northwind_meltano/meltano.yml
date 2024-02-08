@@ -1,0 +1,40 @@
+version: 1
+default_environment: dev
+project_id: efc999ba-1765-43c2-8689-d483c3ccc63b
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+
+  extractors:
+  - name: tap-postgres
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-postgres.git
+    config:
+      sqlalchemy_url: postgresql://northwind_user:thewindisblowing@localhost:5432/northwind
+    select:
+    - public-suppliers.*
+
+  - name: tap-singer-jsonl
+    variant: kgpayne
+    pip_url: tap-singer-jsonl
+    files:
+        pattern: "*.jsonl"
+        path: "./output"
+
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
+    files:
+      pattern: "*.jsonl"
+      path: "./output"
+
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      sqlalchemy_url: postgresql://warehouse_user:warehouse_password@localhost:5434/warehouse
+    select:
+    - public-suppliers.*
