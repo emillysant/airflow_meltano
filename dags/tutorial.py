@@ -77,18 +77,18 @@ with DAG(
     # """
     # )
 
-    dag.doc_md = __doc__  # providing that you have a docstring at the beginning of the DAG; OR
-    dag.doc_md = """
-    This is a documentation placed anywhere
-    """  # otherwise, type it like this
-    templated_command = textwrap.dedent(
-        """
-    {% for i in range(5) %}
-        echo "{{ ds }}"
-        echo "{{ macros.ds_add(ds, 7)}}"
-    {% endfor %}
-    """
-    )
+    # dag.doc_md = __doc__  # providing that you have a docstring at the beginning of the DAG; OR
+    # dag.doc_md = """
+    # This is a documentation placed anywhere
+    # """  # otherwise, type it like this
+    # templated_command = textwrap.dedent(
+    #     """
+    # {% for i in range(5) %}
+    #     echo "{{ ds }}"
+    #     echo "{{ macros.ds_add(ds, 7)}}"
+    # {% endfor %}
+    # """
+    # )
 
     # t3 = BashOperator(
     #     task_id="templated",
@@ -140,4 +140,4 @@ with DAG(
         mount_tmp_dir=False,
     )
 
-    create_directory_task >> meltano_extraction_task >> meltano_ingestion_task
+    meltano_extraction_task >> meltano_ingestion_task

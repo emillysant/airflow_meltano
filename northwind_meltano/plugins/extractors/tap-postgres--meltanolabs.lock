@@ -49,6 +49,10 @@
         {
           "label": "Jsonl",
           "value": "jsonl"
+        },
+        {
+          "label": "Parquet",
+          "value": "parquet"
         }
       ]
     },
@@ -97,6 +101,18 @@
           "value": "LOG_BASED"
         }
       ]
+    },
+    {
+      "name": "faker_config.locale",
+      "kind": "string",
+      "label": "Faker Config Locale",
+      "description": "One or more LCID locale strings to produce localized output for: https://faker.readthedocs.io/en/master/#localization"
+    },
+    {
+      "name": "faker_config.seed",
+      "kind": "string",
+      "label": "Faker Config Seed",
+      "description": "Value to seed the Faker generator for deterministic output: https://faker.readthedocs.io/en/master/#seeding-the-generator"
     },
     {
       "name": "filter_schemas",
